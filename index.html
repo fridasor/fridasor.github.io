@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Frida Oleivsgard Sørensen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="imglinks.js"></script>
+    <link rel="stylesheet" href="stylesheet.css">
+  </head>
+  <body>
+
+    <div class="col-sm-2">
+
+      <div class="sidebar">
+        <h1><a href="/"><span>f</span>rida oleivsgard sørensen</a></h1>
+        <ul class="navbar">
+          <li>
+            <a onclick="$('#gallery div').show();">all</a>
+          </li>
+          <li>
+            <a id="landscape" class="navlink">landscape</a>
+          </li>
+          <li>
+            <a id="summer21" class="navlink">summer '21</a>
+          </li>
+          <li>
+            <a id="city" class="navlink">city</a>
+          </li>
+          <li>
+            <a id="ppl" class="navlink">people</a>
+          </li>
+          <li>
+            <a id="graphic" class="navlink">graphics</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="main col-sm-10">
+
+      <div id="gallerymodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+
+          <div class="modal-content">
+              <img id="modalimg" src="" alt="">
+
+            </div>
+        </div>
+      </div>
+
+      <div id="gallery" class="row">
+      </div>
+    </div>
+
+  </body>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    function shuffleArray(array) {
+      // shuffle image order
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    shuffleArray(imgsrcs);
+
+    for (var i in imgsrcs) {
+      imgsrcs[i] = imgsrcs[i].split(" ");
+    };
+
+    for (var i in imgsrcs) {
+      let k = i % 3;
+      var outerbox = document.createElement('div');
+      $(outerbox).addClass('img_outerbox col-2');
+
+      var img = document.createElement('img');
+      $(img).attr('src', imgsrcs[i][0]);
+
+      let classtring = imgsrcs[i][1];
+      $(outerbox).addClass(classtring);
+
+      outerbox.appendChild(img);
+
+      var box = document.getElementById('gallery');
+      box.append(outerbox);
+    };
+
+    // modal:
+    $("img").on("click", function() {
+      let src = this.getAttribute("src");
+      $("#modalimg").attr('src', src);
+      $('#gallerymodal').modal("show");
+    });
+
+    // ugly mess for navigation:
+    $('ul.navbar li a.navlink').on('click', function() {
+      $('.actif').removeClass('actif');
+      $(this).addClass('actif');
+      $('#gallery div').hide();
+
+      $('#gallery div.' + $(this).attr('id')).show();
+    });
+
+  });
+</script>
+
+</html>
