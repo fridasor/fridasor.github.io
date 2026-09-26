@@ -24,30 +24,36 @@
                 <h3>Digital</h3>
                 <div class="artwork">
                     <img src="assets/early_bird.png" alt="Digital illustration of a pigeon with glasses carrying a newspaper">
+                    <p>Early bird gets the morning paper!</p>
                 </div>
 
                 <div class="artwork">
                     <img src="assets/frog.png" alt="Digital illustration of Frida smiling at a frog in the woods">
+                    <p>Self-portrait</p>
                 </div>
 
                 <div class="artwork">
-                    <img src="assets/star.png" alt="Digital illustration of a pigeon with glasses carrying a newspaper">
+                    <img src="assets/star.png" alt="Digital drawing of person in star costume">
                 </div>
 
 
                 <div class="artwork">
                     <img src="assets/autumn.png" alt="Digital illustration of bicyclist surrounded by autumn leaves">
+                    <p>Bicycling through crunchy leaves in autumn</p>
                 </div>
 
                 <div class="artwork">
                     <img src="assets/jungle_date.png" alt="Digital illustration of a couple holding hands walking in a jungle">
+                    <p>Jungle date</p>
                 </div>
+                
             </div>
 
             <div id="traditional">
                 <h3>Traditional</h3>
                 <div class="artwork">
                     <img src="assets/sketchbook-1.png" alt="Sketch of people on a train with a lichen photo as background">
+                    <p>Subway sketch superimposed over lichen</p>
                 </div>
             </div>
 
@@ -58,5 +64,38 @@
             
 
         </div>
+
+        <div id="modal" class="inactive">
+            <div id="modal-inner">
+                <img id="modal-image" src="assets/autumn.png" alt="">
+                hello!
+            </div>
+        </div>
+
+        <script>
+        var images = document.querySelectorAll("img");
+        for (const im of images) {
+            im.ondragstart = function() { return false; };
+        }
+
+        var divs = document.querySelectorAll("div.artwork");
+        for (const div of divs) {
+            div.onclick = function() {
+
+                document.getElementById("modal-inner").innerHTML = this.innerHTML;
+
+                document.querySelector("#modal-inner img").ondragstart = function() { return false; };
+
+
+                document.getElementById("modal").classList.add("active");
+                document.getElementById("modal").classList.remove("inactive");
+            }
+        }
+        
+        document.getElementById("modal").onclick = function() {
+            this.classList.add("inactive");
+            this.classList.remove("active");
+        }
+        </script>
     </body>
 </html>

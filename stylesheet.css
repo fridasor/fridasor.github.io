@@ -26,6 +26,7 @@ h1 {
 
 h1:hover {
     color: var(--accent);
+    cursor: pointer;
 }
 
 h2 {
@@ -100,3 +101,49 @@ div.artwork:hover {
     }
 }
 
+.artwork img {
+    position: relative;
+}
+
+.artwork p {
+    visibility: hidden;
+    position: absolute;
+}
+
+
+/* modal */
+
+
+#modal.inactive {
+    visibility: hidden;
+}
+
+#modal.active {
+    visibility: visible;
+}
+
+#modal {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    text-align: center;
+}
+
+#modal-inner {
+    margin-top: 100px;
+}
+
+#modal img {
+    width: 500px;
+}
+
+#modal p {
+    color: var(--accent);
+    font-size: 20px;
+}
